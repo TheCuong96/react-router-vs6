@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 interface Props {
   children?: React.ReactNode
 }
@@ -10,28 +10,28 @@ export default function MainLayout({ children }: Props) {
         <div className='h-full overflow-y-auto bg-gray-100 py-4 px-3 shadow-lg'>
           <ul className='space-y-2'>
             <li>
-              <a
-                href=''
+              <Link
+                to='/'
                 className='flex items-center rounded-lg bg-gray-300 p-2 text-base font-normal text-gray-900 hover:bg-gray-300'
               >
                 <span className='ml-3 font-bold'>Dashboard</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href=''
+              <Link
+                to='/staff'
                 className='flex items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-300'
               >
                 <span className='ml-3'>Staff</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href=''
+              <Link
+                to='/about'
                 className='flex items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-300'
               >
                 <span className='ml-3'>About</span>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

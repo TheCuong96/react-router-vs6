@@ -1,46 +1,52 @@
-# Getting Started with Create React App
+# React Router
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Phân biệt một số loại Router Component
 
-## Available Scripts
+### BrowsersRouter
 
-In the project directory, you can run:
+99% anh em sẽ dùng `<BrowsersRouter>`, được build trên history API của trình duyệt, dùng để lưu trữ URL và chuyển trang.
 
-### `yarn start`
+Ví dụ:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Đối với SPA thì server sẽ cấu hình là khi bạn nhập url nào thì server cũng trả về url nhắm đến file `index.html`, ví dụ `/`.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Khi enter url `https://phanthecuong.com/about` vào trình duyệt, server nhận được url là `https://phanthecuong.com/about` và sẽ trả về nội dụng là file `index.html`. Lúc này React Router sẽ đảm nhiệm việc hiển thị component cho đúng tùy vào url.
 
-### `yarn test`
+### HashRouter
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+HashRouter dùng dấu `#` trong URL ví dụ: `https://phanthecuong.com/#/about`, `https://phanthecuong.com/#/blog/hoc-react-nhu-the-nao`.
 
-### `yarn build`
+Lợi ích của việc thêm dấu `#` vào url là để server không nhận biết được chúng ta vào url nào. Khi anh em nhập các url ở ví dụ trên vào trình duyệt và nhấn enter thì trình duyệt chỉ gửi lên server là `https://phanthecuong.com` và server chỉ nhận được là `https://phanthecuong.com`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Điều này khá hữu ích khi server anh em là một share hosting và không toàn quyền điều hành server.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Ví dụ:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Có một server được cấu hình cho nhiều dịch vụ, mỗi dịch vụ là một url khác nhau.
 
-### `yarn eject`
+- Landing Page cho user: `https://hospital.com`
+- Manager: `https://hospital.com/manager`
+- Doctor: `https://hospital.com/doctor`
+- Staff: `https://hospital.com/staff`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Mình đảm nhiệm thiết kế một Landing Page cho user là một SPA có nhiều trang trong đó, và chỉ được cấp cho url là `https://hospital.com`.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Bây giờ nếu mình thiết kế thêm url `/manager` là dành cho việc quản lý profile cá nhân của người dùng
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- BrowsersRouter: người dùng enter url `https://hospital.com/manager` thì server sẽ trả về trang của manager (người quản lý), điều này không tốt!
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- HashRouter: người dùng enter url `https://hospital.com/#/manager` thì server sẽ trả về trang `https://hospital.com`, lúc này React Router sẽ thực hiện hiển thị cho đúng trang `/manager`.
 
-## Learn More
+### MemoryRouter
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+MemoryRouter lưu trữ url vào một array. Không như `<BrowserHistory>` và `<HashRouter>`, nó không bị ràng buộc bởi history stack trong trình duyệt. Điều này rất hữu ích khi viết unit test cho React Router.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Router
+
+Đây là cấp thấp nhất của tất cả Router component, tức là các Router component như `BrowsersRouter` hay `HashRouter` đều được build nên từ `Router` này.
+
+Bạn không cần dùng Router, thay vì đó dùng các Router cấp cao hơn như `BrowsersRouter`
+
+### StaticRouter
+
+StaticRouter dùng để render React Router trong môi trường nodejs, phục vụ cho việc Server Side Rendering
