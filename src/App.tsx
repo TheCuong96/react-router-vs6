@@ -6,24 +6,35 @@ import About from 'pages/About'
 import Dashboard from 'pages/Dashboard'
 import NotFound from 'pages/NotFound'
 import Staff from 'pages/Staff'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useRoutes } from 'react-router-dom'
 function App() {
+  let elements = useRoutes([
+    {
+      path: '/',
+      element: <Dashboard />
+    },
+    { path: '/about', element: <About /> },
+    { path: '/staff/*', element: <Staff /> },
+    { path: '*', element: <NotFound /> }
+  ])
+
   return (
     <div className='App'>
       <MainLayout>
+        {elements}
         <Routes>
-          <Route path='/' element={<Dashboard />} />
+          {/* <Route path='/' element={<Dashboard />} />
           <Route path='/about' element={<About />} />
-          <Route path='*' element={<NotFound />} />
+          <Route path='*' element={<NotFound />} /> */}
 
-          <Route path='/staff/*' element={<Staff />}>
-            {/* Khi setup như vậy thì ta sẽ dùng  <Outlet /> ở nơi mà ta muốn những thằng con nó show ra */}
-            {/* <Route path=':id' element={<StaffItem />} />
+          {/* <Route path='/staff/*' element={<Staff />}> */}
+          {/* Khi setup như vậy thì ta sẽ dùng  <Outlet /> ở nơi mà ta muốn những thằng con nó show ra */}
+          {/* <Route path=':id' element={<StaffItem />} />
             <Route path='add' element={<AddStaff />} />
             <Route index element={<StaffList />} /> */}
-            {/* cách để chọn tab mặc định khi ta nhảy vào staff */}
-            {/* <Route path='list' element={<StaffList />} /> */}
-          </Route>
+          {/* cách để chọn tab mặc định khi ta nhảy vào staff */}
+          {/* <Route path='list' element={<StaffList />} /> */}
+          {/* </Route> */}
 
           {/* <Route path='/staff' element={<Staff />} />
           <Route path='/staff/:id' element={<StaffItem />} />
