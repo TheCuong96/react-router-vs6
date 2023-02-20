@@ -20,7 +20,9 @@ function App() {
             {/* Khi setup như vậy thì ta sẽ dùng  <Outlet /> ở nơi mà ta muốn những thằng con nó show ra */}
             <Route path=':id' element={<StaffItem />} />
             <Route path='add' element={<AddStaff />} />
-            <Route path='list' element={<StaffList />} />
+            <Route index element={<StaffList />} />
+            {/* cách để chọn tab mặc định khi ta nhảy vào staff */}
+            {/* <Route path='list' element={<StaffList />} /> */}
           </Route>
 
           {/* <Route path='/staff' element={<Staff />} />

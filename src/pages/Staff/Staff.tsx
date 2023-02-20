@@ -1,4 +1,3 @@
-import AddStaff from 'components/AddStaff'
 import { NavLink, Outlet } from 'react-router-dom'
 
 export default function Staff() {
@@ -9,7 +8,8 @@ export default function Staff() {
         <ul className='-mb-px flex flex-wrap'>
           <li className='mr-2'>
             <NavLink
-              to='/staff/list'
+              to='/staff' // nếu đã có index bên kia thì bên đây phải xóa list đi vì nó sẽ không tìm được đúng Link đã active nếu vẫn còn để như vậy
+              end
               className={({ isActive }) =>
                 `inline-block rounded-t-lg border-b-2 p-4 ${
                   isActive
