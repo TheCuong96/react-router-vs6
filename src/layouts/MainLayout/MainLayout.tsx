@@ -13,7 +13,7 @@ export default function MainLayout({ children }: Props) {
               <NavLink
                 to='/'
                 end // nó giống exact, dùng để xác định xem thằng cha đã match hay chưa, nếu match rồi thì thằng khác sẽ không match nữa, ngắn gọn là nó dùng để xác thực đúng 1 thằng vào 1 thời điểm được match
-                replace // mặc định khi ta đổi trang, thì nó sẽ lưu vào history page trong trình duyệt của chúng ta và thằng này dùng để ngăn chặn điều đó với chính bản thân nó, khi có nó thì nó sẽ không lưu vào lịch sử duyệt web của link này mà nó lấy url hiện tại để ghi đè lên
+                // replace // mặc định khi ta đổi trang, thì nó sẽ lưu vào history page trong trình duyệt của chúng ta và thằng này dùng để ngăn chặn điều đó với chính bản thân nó, khi có nó thì nó sẽ không lưu vào lịch sử duyệt web của link này mà nó lấy url hiện tại để ghi đè lên
                 className={({ isActive }) => {
                   const isActiveClass = isActive ? 'bg-gray-300  ' : ''
                   return `flex items-center rounded-lg ${isActiveClass} p-2 text-base font-normal text-gray-900 hover:bg-gray-300 `
